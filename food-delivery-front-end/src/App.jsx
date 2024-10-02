@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from './components/navbar/Navbar'
 
 const App = () => {
   return (
-    <div>Food Delivery</div>
+    <div className='app'>
+        <Navbar/>
+    </div>
   )
 }
 
