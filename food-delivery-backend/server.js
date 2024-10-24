@@ -17,6 +17,7 @@ connectDB();
 
 // api endpoints
 app.use("/api/food",foodRouter)
+app.use("/images",express.static('uploads')) //mounted the uploads folder into the /images endpoint
 
 app.get("/",(req,res) => {
     res.send("API Working")
