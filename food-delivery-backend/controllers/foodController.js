@@ -1,3 +1,4 @@
+import { log } from "console";
 import foodModel from "../models/foodModel.js";
 import fs from 'fs'
 
@@ -33,4 +34,18 @@ const getFood = async (req,res) => {
     }
 }
 
-export {addFood,getFood}
+// Delete Foods
+const deleteFood = async (req,res) => {
+    try {
+        const foodItem = await foodModel.findById(req.body.id);// find the food model using the id
+        fs.unlink(`uploads/${foodItem.image}`,()=>{})// delete the image in the uploads folder
+
+        await foodModel.findByIdAndDelete(req.body.id);
+        res.json({success:true,message:"Food Deleted"})
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:"Error"})
+    }
+}
+
+export {addFood,getFood,deleteFood}
